@@ -1,6 +1,6 @@
-const { create } = require('domain');
-const { app, BrowserWindow } = require('electron');
-const path = require('path');
+import { create } from 'domain';
+import { app, BrowserWindow } from 'electron';
+import path from 'path';
 
 function createWindow(){
     const win = new BrowserWindow({
