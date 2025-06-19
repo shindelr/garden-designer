@@ -8,7 +8,7 @@ function HomePage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <h1 className="text-center">The Garden Designer</h1>
+      <h1 className="text-center pb-25">The Garden Designer</h1>
 
       <div className="flex h-96 flex-row justify-around">
         <div className={`${cardBaseStyle} ${transitionStyle} ${shadowStyle}`}>

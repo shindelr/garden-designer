@@ -1,12 +1,17 @@
 import { Link } from "react-router-dom";
+import DesignStage from "./DesignStage";
+import ShapeMenu from "./ShapeMenu";
 
 function DesignPage() {
   return (
-    <div className="min-h-screen flex flex-col justify-center">
-      <h1 className="text-center">I am Designing Gardens!</h1>
-      <Link to="/" className="text-center">
-        <span>Home</span>
+    <div className="min-h-screen flex flex-col">
+      <Link to="/" className="text-start">
+        <span className=" p-10">Home</span>
       </Link>
+      <ShapeMenu/>
+      <DesignStage/>
+
+
     </div>
   );
 }
