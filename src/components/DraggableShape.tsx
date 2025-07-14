@@ -20,12 +20,6 @@ function DraggableShape({ x, y, src, width = 150, height = 150 }: Props) {
       width={width}
       height={height}
       draggable
-      onMouseEnter={(e) => {
-        document.body.style.cursor = "pointer";
-      }}
-      onMouseLeave={(e) => {
-        document.body.style.cursor = "default";
-      }}
     />
   );
 }

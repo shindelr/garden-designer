@@ -1,58 +1,68 @@
 import { Stage, Layer } from "react-konva";
+import type Konva from "konva";
 import { useRef, useState } from "react";
 import DraggableShape from "./DraggableShape";
-import lavender from "../../public/plant-images/mature-garden-lavender.png";
-
-const PLANTS: Record<string, string> = {
-  lavender,
-};
+import ShapeMenu from "./ShapeMenu";
 
 type Plant = {
-  type: string;
+  id: string;
   x: number;
   y: number;
+  width: number;
+  height: number;
+  src: string;
 };
 
 function DesignStage() {
-  //   const [position, setPosition] = useState({
-  //     x: window.innerWidth / 2,
-  //     y: window.innerHeight / 2,
-  //   });
-
   const [plants, setPlants] = useState<Plant[]>([]);
+  const stageRef = useRef<Konva.Stage | any>(null);
+  const dragSrcRef = useRef<string>("");
 
-  const handleDrop = (e: React.DragEvent) => {
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    const type = e.dataTransfer.getData("plant-type");
-    const stage = (e.target as any).getStage();
-    const pointer = stage.getPointerPosition();
-
-    if (!pointer || !PLANTS[type]) return;
-    setPlants((prev) => [
-      ...prev,
-      {
-        type,
-        x: pointer.x,
-        y: pointer.y,
-      },
-    ]);
+    const containerRect = stageRef.current.container().getBoundingClientRect();
+    /*
+    TODO:
+    Will want to re-work the X/Y math with dynamic width and height variables.
+    Right now just eyeballing the center of the image based on those static
+    numbers, however once I implement scale between plants this will need to be
+    updated. 
+    */
+    setPlants(
+      plants.concat([
+        {
+          width: 150,
+          height: 150,
+          src: dragSrcRef.current,
+          id: Date.now().toString(),
+          x: e.clientX - containerRect.left - 80,
+          y: e.clientY - containerRect.top - 80,
+        },
+      ])
+    );
+    dragSrcRef.current = "";
   };
 
   return (
-    <div onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
-      <Stage width={window.innerWidth} height={window.innerHeight}>
-        <Layer>
-            {plants.map((plant, i) => (
-                <DraggableShape 
-                key={i}
-                x={plant.x}
-                y={plant.y}
-                src={PLANTS[plant.type]}
-                />
+    <>
+      <ShapeMenu dragSrcRef={dragSrcRef} />
+      <div
+        onDrop={handleDrop}
+        onDragOver={(e: React.DragEvent<HTMLDivElement>) => e.preventDefault()}
+      >
+        <Stage
+          width={window.innerWidth}
+          height={window.innerHeight}
+          ref={stageRef}
+        >
+          <Layer>
+            {plants.map((plant) => (
+              <DraggableShape key={plant.id} {...plant} />
             ))}
-        </Layer>
-      </Stage>
-    </div>
+          </Layer>
+        </Stage>
+      </div>
+    </>
   );
 }
 
