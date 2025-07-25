@@ -1,13 +1,25 @@
-import { Link } from "react-router-dom";
+import HeaderBar from "./Header";
+import PlantCard from "./PlantCard";
+import plantMetaData from "../assets/plant-metadata.json";
 
+const images = import.meta.glob("../assets/plant-images/*.png", { eager: true, import: "default" });
 function PlantsInfoPage() {
   return (
-    <div className="min-h-screen flex flex-col justify-center">
-      <h1 className="text-center">I am metadata about plants!</h1>
-      <Link to="/" className="text-center">
-        <span>Home</span>
-      </Link>
-    </div>
+    <>
+      <HeaderBar />
+      <div className="flex justify-center">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+        {plantMetaData.plants.map((plant, index) => {
+          const filename = plant.imageSrc.split("/").pop() || "";
+          const imageKey = Object.keys(images).find(key => key.endsWith(filename));
+          const imageSrc = imageKey ? images[imageKey] as string : "";
+          return (
+            <PlantCard key={index} commonName={plant.commonName} imageSrc={imageSrc} />
+          );
+        })}
+      </div>
+      </div>
+    </>
   );
 }
 

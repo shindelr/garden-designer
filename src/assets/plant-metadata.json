@@ -5,61 +5,70 @@
             "scientificName": "",
             "matureHeightInches": 54,
             "matureWidthInches": 42,
-            "src": "src/assets/plant-images/azalea.png"
+            "imageSrc": "../assets/plant-images/azalea.png"
         },
         {
             "commonName": "Black Mondo Grass",
             "scientificName": "",
             "matureHeightInches": 12,
-            "matureWidthInches": 12
+            "matureWidthInches": 12,
+            "imageSrc": "../assets/plant-images/black-mondo-grass.png"
         },
         {
             "commonName": "Coreopsis",
             "scientificName": "",
             "matureHeightInches": 36,
-            "matureWidthInches": 20
+            "matureWidthInches": 20,
+            "imageSrc": "../assets/plant-images/coreopsis.png"
         },
         {
             "commonName": "Shasta Daisy",
             "scientificName": "",
             "matureHeightInches": 48,
-            "matureWidthInches": 36
+            "matureWidthInches": 36,
+            "imageSrc": "../assets/plant-images/daisy.png"
         },
         {
             "commonName": "Japanese Painted Fern",
             "scientificName": "",
             "matureHeightInches": 16,
-            "matureWidthInches": 20
+            "matureWidthInches": 20,
+            "imageSrc": "../assets/plant-images/japanesepaintedfern.png"
         },
         {
             "commonName": "Lady of Shallot Rose",
             "scientificName": "",
             "matureHeightInches": 48,
-            "matureWidthInches": 36
+            "matureWidthInches": 36,
+            "imageSrc": "../assets/plant-images/lady-of-shalott-rose.png"
         },
         {
             "commonName": "Garden Lavender",
             "scientificName": "",
             "matureHeightInches": 36,
-            "matureWidthInches": 18
+            "matureWidthInches": 18,
+            "imageSrc": "../assets/plant-images/mature-garden-lavender.png"
         },
         {
             "commonName": "Rhodedendron",
             "scientificName": "",
             "matureHeightInches": 72,
-            "matureWidthInches": 72
+            "matureWidthInches": 72,
+            "imageSrc": "../assets/plant-images/rhodie.png"
         },
         {
             "commonName": "Rosemary",
             "scientificName": "",
             "matureHeightInches": 36,
-            "matureWidthInches": 48
+            "matureWidthInches": 48,
+            "imageSrc": "../assets/plant-images/rosemary.png"
         },
         {
             "commonName": "Hasta",
             "scientificName": "",
             "matureHeightInches": 12,
-            "matureWidthInches": 36
+            "matureWidthInches": 36,
+            "imageSrc": "../assets/plant-images/variegated-hasta.png"
         }
     ]
 }

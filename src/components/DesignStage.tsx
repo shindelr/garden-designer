@@ -54,8 +54,8 @@ function DesignStage() {
     setPlants(
       plants.concat([
         {
-          width: height,
-          height: spread,
+          width: spread,
+          height: height,
           src: dragData.current,
           id: Date.now().toString(),
           x: e.clientX - containerRect.left - (spread / 2),
