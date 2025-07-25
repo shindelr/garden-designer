@@ -10,9 +10,11 @@ import daisy from "../assets/plant-images/daisy.png"
 import coreopsis from "../assets/plant-images/coreopsis.png"
 import variegatedhasta from "../assets/plant-images/variegated-hasta.png"
 import japanesepaintedfern from "../assets/plant-images/japanesepaintedfern.png"
+import azalea from "../assets/plant-images/azalea.png"
 
 type Props = {
-  dragSrcRef: React.RefObject<string>;
+  // dragSrcRef: React.RefObject<string>;
+  dragSrcRef: React.RefObject<{ current: string; commonName: string; } | null>
 };
 
 function ShapeMenu({ dragSrcRef }: Props) {
@@ -22,15 +24,16 @@ function ShapeMenu({ dragSrcRef }: Props) {
         <img src={homeicon} />
       </Link>
 
-      <ShapeMenuImage imageSrc={lavender} dragSrcRef={dragSrcRef} />
-      <ShapeMenuImage imageSrc={ladyofshallot} dragSrcRef={dragSrcRef} />
-      <ShapeMenuImage imageSrc={blackmondograss} dragSrcRef={dragSrcRef} />
-      <ShapeMenuImage imageSrc={rhode} dragSrcRef={dragSrcRef} />
-      <ShapeMenuImage imageSrc={rosemary} dragSrcRef={dragSrcRef} />
-      <ShapeMenuImage imageSrc={daisy} dragSrcRef={dragSrcRef} />
-      <ShapeMenuImage imageSrc={coreopsis} dragSrcRef={dragSrcRef} />
-      <ShapeMenuImage imageSrc={variegatedhasta} dragSrcRef={dragSrcRef} />
-      <ShapeMenuImage imageSrc={japanesepaintedfern} dragSrcRef={dragSrcRef} />
+      <ShapeMenuImage imageSrc={lavender} name="Garden Lavender" dragSrcRef={dragSrcRef} />
+      <ShapeMenuImage imageSrc={ladyofshallot} name="Lady of Shallot Rose" dragSrcRef={dragSrcRef} />
+      <ShapeMenuImage imageSrc={blackmondograss} name="Black Mondo Grass" dragSrcRef={dragSrcRef} />
+      <ShapeMenuImage imageSrc={rhode} name="Rhodedendron" dragSrcRef={dragSrcRef} />
+      <ShapeMenuImage imageSrc={rosemary} name="Rosemary" dragSrcRef={dragSrcRef} />
+      <ShapeMenuImage imageSrc={daisy} name="Shasta Daisy" dragSrcRef={dragSrcRef} />
+      <ShapeMenuImage imageSrc={coreopsis} name="Coreopsis" dragSrcRef={dragSrcRef} />
+      <ShapeMenuImage imageSrc={variegatedhasta} name="Hasta" dragSrcRef={dragSrcRef} />
+      <ShapeMenuImage imageSrc={japanesepaintedfern} name="Japanese Painted Fern" dragSrcRef={dragSrcRef} />
+      <ShapeMenuImage imageSrc={azalea} name="Azalea" dragSrcRef={dragSrcRef} />
 
     </div>
   );

@@ -1,9 +1,10 @@
 type Props = {
   imageSrc: string;
-  dragSrcRef: React.RefObject<string>;
+  name: string;
+  dragSrcRef: React.RefObject<{ current: string; commonName: string; } | null>
 };
 
-function ShapeMenuImage({ imageSrc, dragSrcRef }: Props) {
+function ShapeMenuImage({ imageSrc, name, dragSrcRef }: Props) {
   return (
     <img
       src={imageSrc}
@@ -11,7 +12,12 @@ function ShapeMenuImage({ imageSrc, dragSrcRef }: Props) {
       height={50}
       draggable
       onDragStart={(e) => {
-        dragSrcRef.current = imageSrc;
+        dragSrcRef.current = {
+          current: imageSrc,
+          commonName: name
+
+        } 
+
       }}
       onMouseEnter={(e) => {
         document.body.style.cursor = "pointer";

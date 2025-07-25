@@ -3,6 +3,19 @@ import type Konva from "konva";
 import { useRef, useState } from "react";
 import DraggableShape from "./DraggableShape";
 import ShapeMenu from "./ShapeMenu";
+import plantData from "../assets/plant-metadata.json";
+
+type PlantMetaData = {
+  commonName: string;
+  scientificName: string;
+  matureHeight: number;
+  matureSpread: number;
+  src: string;
+};
+
+type PlantData = {
+  plantsData: PlantMetaData[];
+};
 
 type Plant = {
   id: string;
@@ -16,31 +29,41 @@ type Plant = {
 function DesignStage() {
   const [plants, setPlants] = useState<Plant[]>([]);
   const stageRef = useRef<Konva.Stage | any>(null);
-  const dragSrcRef = useRef<string>("");
+  const dragSrcRef = useRef<{ current: string; commonName: string } | null>(
+    null
+  );
+  const ppi = 10;
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     const containerRect = stageRef.current.container().getBoundingClientRect();
-    /*
-    TODO:
-    Will want to re-work the X/Y math with dynamic width and height variables.
-    Right now just eyeballing the center of the image based on those static
-    numbers, however once I implement scale between plants this will need to be
-    updated. 
-    */
+    const dragData = dragSrcRef.current;
+    if (!dragData) return;
+
+    const plantSpecs = plantData.plants.find(
+      (plant) => plant.commonName.toLowerCase() == dragData.commonName.toLowerCase()
+    );
+
+    console.log(plantSpecs);
+
+    const height = plantSpecs ? plantSpecs.matureHeightInches * ppi : 150;
+    const spread = plantSpecs ? plantSpecs.matureWidthInches * ppi : 150;
+    console.log(height);
+    console.log(spread);
+
     setPlants(
       plants.concat([
         {
-          width: 150,
-          height: 150,
-          src: dragSrcRef.current,
+          width: height,
+          height: spread,
+          src: dragData.current,
           id: Date.now().toString(),
-          x: e.clientX - containerRect.left - 80,
-          y: e.clientY - containerRect.top - 80,
+          x: e.clientX - containerRect.left - (spread / 2),
+          y: e.clientY - containerRect.top - (height / 2),
         },
       ])
     );
-    dragSrcRef.current = "";
+    dragData.current = "";
   };
 
   return (
